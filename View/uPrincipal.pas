@@ -4,10 +4,12 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs;
+  Dialogs, StdCtrls, Buttons, uFCadastrarCliente;
 
 type
-  TForm1 = class(TForm)
+  TfrmPrincipal = class(TForm)
+    btnCliente: TBitBtn;
+    procedure btnClienteClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -15,10 +17,20 @@ type
   end;
 
 var
-  Form1: TForm1;
+  frmPrincipal: TfrmPrincipal;
 
 implementation
 
 {$R *.dfm}
+
+procedure TfrmPrincipal.btnClienteClick(Sender: TObject);
+begin
+  frmCadastrarCliente := TfrmCadastrarCliente.Create(nil);
+  try
+    frmCadastrarCliente.ShowModal;
+  finally
+    FreeAndNil(frmCadastrarCliente);
+  end;
+end;
 
 end.
